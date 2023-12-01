@@ -11,10 +11,6 @@ import (
 )
 
 func main() {
-    // read lines from file
-    // create NewTrebuchet
-    // call GetCalibrationSum
-    // print result
     file, err := os.Open("input.txt")
     if err != nil {
         log.Fatal(err)
@@ -30,6 +26,6 @@ func main() {
         log.Fatal(err)
     }
 
-	trebuchet := trebuchet.NewTrebuchet(lines)
+	trebuchet := trebuchet.NewTrebuchet(lines, nil)
 	fmt.Println(trebuchet.GetCalibrationSum())
 }
