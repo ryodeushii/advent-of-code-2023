@@ -12,7 +12,7 @@ func main() {
 	fileName := "input.txt"
 	file, err := os.Open(fileName)
 	if err != nil {
-		log.Fatal("Failed to open file %s", fileName)
+		log.Fatal("Failed to open file", fileName)
 		return
 	}
 	defer file.Close()

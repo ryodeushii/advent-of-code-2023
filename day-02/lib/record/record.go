@@ -47,3 +47,25 @@ func (r *Record) IsPossible(dimes map[string]int) bool {
     }
     return true
 }
+
+
+func (r *Record) FindMinimumSetOfDimes() map[string]int {
+    dimes := make(map[string]int)
+    for _, game := range r.Parsed {
+        for key, value := range game.Parsed {
+            if  dimes[key] < value {
+                dimes[key] = value
+            }
+        }
+    }
+    return dimes
+}
+
+func (r *Record) GetPower() int {
+    dimes := r.FindMinimumSetOfDimes()
+    power := 1
+    for _, value := range dimes {
+        power *= value
+    }
+    return power
+}

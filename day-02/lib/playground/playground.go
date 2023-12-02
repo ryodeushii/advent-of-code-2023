@@ -37,3 +37,13 @@ func (p *Playground) SumIdsOfPossibleRecords() int {
 
 	return sum
 }
+
+func (p *Playground) SumOfPowers() int {
+    sum := 0
+
+    for _, r := range p.Records {
+        sum += r.GetPower()
+    }
+
+   return sum
+}

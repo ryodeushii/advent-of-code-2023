@@ -39,6 +39,17 @@ func TestParse(t *testing.T) {
 	if !record.IsPossible(dimes) {
 		t.Errorf("Record should be possible")
 	}
+
+    setOfDimes := record.FindMinimumSetOfDimes()
+    if setOfDimes["red"] != 4 {
+        t.Errorf("Set of dimes should have 4 red, got %d", setOfDimes["red"])
+    }
+    if setOfDimes["blue"] != 6 {
+        t.Errorf("Set of dimes should have 6 blue, got %d", setOfDimes["blue"])
+    }
+    if setOfDimes["green"] != 2 {
+        t.Errorf("Set of dimes should have 2 green, got %d", setOfDimes["green"])
+    }
 }
 
 func TestImpossible(t *testing.T) {

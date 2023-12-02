@@ -31,12 +31,54 @@ func TestNewPlayground(t *testing.T) {
 	if sum := playgroundInstance.SumIdsOfPossibleRecords(); sum != expectedSum {
 		t.Errorf("Sum of ids of possible records should be %d, got %d", expectedSum, sum)
 	}
+
+	expectedDimes := []map[string]int{
+		map[string]int{
+			"red":   4,
+			"green": 2,
+			"blue":  6,
+		},
+		map[string]int{
+			"red":   1,
+			"green": 3,
+			"blue":  4,
+		},
+		map[string]int{
+			"red":   20,
+			"green": 13,
+			"blue":  6},
+		map[string]int{
+			"red":   14,
+			"green": 3,
+			"blue":  15,
+		},
+		map[string]int{
+			"red":   6,
+			"green": 3,
+			"blue":  2,
+		}}
+	for i, record := range playgroundInstance.Records {
+		setOfDimes := record.FindMinimumSetOfDimes()
+		for dime, value := range setOfDimes {
+			if value != expectedDimes[i][dime] {
+                t.Errorf("Record %d should have %d %s, got %d", i, expectedDimes[i][dime], dime, value)
+            }
+		}
+	}
+
+	expectedPowers := []int{48, 12, 1560, 630, 36}
+	for i, record := range playgroundInstance.Records {
+		if power := record.GetPower(); power != expectedPowers[i] {
+			t.Errorf("Record %d should have power %d, got %d", i, expectedPowers[i], power)
+		}
+	}
+
 }
 
 func TestOnRealData(t *testing.T) {
 	fileName := "../../input.txt"
 	file, err := os.Open(fileName)
-    expectedSum := 2256
+	expectedSum := 2256
 	if err != nil {
 		t.Errorf("Failed to open file %s", fileName)
 		return
@@ -54,10 +96,10 @@ func TestOnRealData(t *testing.T) {
 		"blue":  14,
 	}
 
-    playgroundInstance := playground.NewPlayground(input, dimes)
-    sum := playgroundInstance.SumIdsOfPossibleRecords()
-    if sum != expectedSum {
-        t.Errorf("Sum of ids of possible records should be %d, got %d", expectedSum, sum)
-    }
+	playgroundInstance := playground.NewPlayground(input, dimes)
+	sum := playgroundInstance.SumIdsOfPossibleRecords()
+	if sum != expectedSum {
+		t.Errorf("Sum of ids of possible records should be %d, got %d", expectedSum, sum)
+	}
 
 }
