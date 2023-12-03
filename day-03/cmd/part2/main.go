@@ -1,7 +1,29 @@
 package main
 
-import "log"
+import (
+	"bufio"
+	"log"
+	"os"
+
+	"github.com/ryodeushii/advent-of-code-2023/day-03/lib/engine"
+)
 
 func main() {
-	log.Println("Hello for Advent of Code 2023")
+	fileName := "input.txt"
+	file, err := os.Open(fileName)
+	if err != nil {
+		log.Fatal("Failed to open file", fileName)
+		return
+	}
+	defer file.Close()
+	var input []string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		input = append(input, scanner.Text())
+	}
+
+	machine := engine.NewEngine(input)
+	sum := machine.FindGears()
+	log.Printf("Sum of part numbers is %d", sum)
+
 }
