@@ -23,7 +23,7 @@ func main() {
 	}
 
 	machine := engine.NewEngine(input)
-	sum := machine.Loop()
+	sum := machine.FindPartNumbers()
 	log.Printf("Sum of part numbers is %d", sum)
 
 }
