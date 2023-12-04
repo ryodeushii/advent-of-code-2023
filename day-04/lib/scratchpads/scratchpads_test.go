@@ -1,7 +1,6 @@
 package scratchpads_test
 
 import (
-	"log"
 	"testing"
 
 	"github.com/ryodeushii/advent-of-code-2023/day-04/lib/scratchpads"
@@ -30,7 +29,6 @@ var input = []string{
 func TestScratchPads(t *testing.T) {
 	expected := 13
 	caller := scratchpads.NewScratchpad(input)
-	log.Printf("caller: %+v", caller)
 
 	if caller.GetPoints() != expected {
 		t.Errorf("Expected %v, got %v", expected, caller.GetPoints())
@@ -42,4 +40,13 @@ func TestScratchPads(t *testing.T) {
 	if card1Actual != card1Expected {
 		t.Errorf("Expected %v, got %v", card1Expected, card1Actual)
 	}
+}
+
+func TestScratchPadsPart2(t *testing.T) {
+    expected := 30
+    caller := scratchpads.NewScratchpad(input)
+    if actual := caller.CountWonScratchpads(); actual != expected {
+        t.Errorf("Expected %v, got %v", expected, actual)
+    }
+
 }
